@@ -2,7 +2,7 @@
 /**
  * print_env - fct
 */
-print_env(void)
+void print_env(void)
 {
 	env_manager(PRINT_ENV, NULL, NULL);
 }

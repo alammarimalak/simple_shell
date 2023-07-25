@@ -22,7 +22,8 @@ void shell(void)
 	bool   loop         = false;
 
 	env_manager(INIT_ENV, NULL, NULL);
-	init_path();
+	state_manager(INIT);
+	init_path_manager();
 	loop = (isatty(STDIN_FILENO) == 1);
 
 	do {
@@ -38,7 +39,8 @@ void shell(void)
 			}
 			if (read_ == 1)
 			{
-				increment_it();
+				
+				state_manager(INC);
 				continue;
 			}
 			if (read_ == -1 || read_ == INTRPT)
@@ -70,7 +72,7 @@ void shell(void)
 			free(buff);
 		buff   = NULL;
 		tokens = NULL;
-		increment_it();
+		state_manager(INC);
 	} while (loop || (read_ >= 0));
 
 	release_path();

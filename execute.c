@@ -1,10 +1,22 @@
 #include "shell.h"
 
-unsigned int iteration_ = 1;
-
-void increment_it()
+int state_manager(state_action_t a)
 {
-	iteration_++;
+	static int line_index;
+	switch(a)
+	{
+		case INIT: {
+			line_index = 0;
+		} break;
+		case GET: {
+			return (line_index);
+		} break;
+		case INC: {
+			line_index++;
+		} break;
+	}
+
+	return (0);
 }
 
 int _exec(char **argv, char *uinput)
@@ -13,7 +25,8 @@ int _exec(char **argv, char *uinput)
 	map_t *m    = get_envp_map();
 	char  *shell;
 	int   res;
-	path_manager(FIND_CMD, &argv[0], &res);
+	
+	resolve_command_path(&argv[0], &res);
 
 	if(res)
 	{
@@ -53,7 +66,7 @@ int _exec(char **argv, char *uinput)
 
 	printf("%s: %i: %s: not found\n", 
 		shell, 
-		iteration_,
+		state_manager(GET),
 		argv[0]
 	);
 

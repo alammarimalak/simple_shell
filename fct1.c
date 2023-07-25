@@ -1,5 +1,4 @@
 #include "shell.h"
-
 volatile sig_atomic_t got_interrupted = 0;
 /**
  * handle_signal - fct
@@ -7,11 +6,10 @@ volatile sig_atomic_t got_interrupted = 0;
 */
 void handle_signal(int signal)
 {
-
-    if (signal == SIGINT)
+	if (signal == SIGINT)
 	{
         got_interrupted = 1;
-    }
+		}
 }
 /**
  * _getline - fct
@@ -27,13 +25,13 @@ int _getline(char **buff, size_t *size, int fd)
 	int    nread    = 0;
 	char c;
 	struct sigaction sa;
-	
+
 	*size = 16;
 	*buff = malloc(*size);
-    sa.sa_handler = handle_signal;
-    sigemptyset(&sa.sa_mask);
-    sa.sa_flags = 0;
-    sigaction(SIGINT, &sa, NULL);
+	sa.sa_handler = handle_signal;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sigaction(SIGINT, &sa, NULL);
 
 	while(consume)
 	{

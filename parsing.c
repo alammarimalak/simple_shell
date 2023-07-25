@@ -1,4 +1,4 @@
-#include "shell_lib.h"
+#include "shell.h"
 
 int trim(char **s)
 {

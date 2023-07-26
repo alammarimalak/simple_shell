@@ -116,5 +116,5 @@ void  print_path();
 void resolve_command_path(char **old_path, int *res);
 int state_manager(state_action_t a);
 int signal_manager(state_action_t a);
-
+int match_char(char c, char *buff, int *idx);
 #endif

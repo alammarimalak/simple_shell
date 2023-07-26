@@ -19,7 +19,7 @@ void *env_manager(env_action_t action, const char *key, const char *value)
 		} break;
 		case INIT_ENV: {
 			env_map = create_map(ENV_MAX);
-			map_cpy(env_map, __environ);
+			map_cpy(env_map, environ);
 		} break;
 		case SET_ENTRY: {
 			set_value(env_map, key, value);

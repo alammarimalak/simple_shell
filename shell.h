@@ -89,7 +89,7 @@ typedef enum path_action_t
 	FIND_CMD,
 	CLEAR_PATH
 } path_action_t;
-
+extern char **environ;
 int   _putchar(char c);
 int   _getline(char **buff, size_t *size, int fd);
 void  prompt_user(void);

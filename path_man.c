@@ -19,8 +19,8 @@ void path_manager(path_action_t action, char **cmd_loc, int *res)
 					 free_2d(path_);
 				 } break;
 		default:
-				 printf("UNREACHABLE.! `path_manager`\n");
-				 break;
+		printf("UNREACHABLE.! `path_man`\n");
+		break;
 	}
 }
 /**
@@ -34,17 +34,18 @@ void find_cmd(char **cmd_loc, char **paths, int *result_)
 {
 	int i = 0;
 	int res;
-	char *copy = NULL;	
+	char *copy = NULL;
 	int path_size;
-	res = access(*cmd_loc, X_OK); 
 
-	if(res != -1)
+	res = access(*cmd_loc, X_OK);
+
+	if (res != -1)
 	{
 		*result_ = 1;
 		return;
 	}
 
-	while(paths[i] != NULL)
+	while (paths[i] != NULL)
 	{
 		path_size = (strlen(paths[i]) + strlen(*cmd_loc) + 2);
 		copy      = (char *) malloc(path_size);
@@ -55,12 +56,12 @@ void find_cmd(char **cmd_loc, char **paths, int *result_)
 
 		res = access(copy, X_OK);
 
-		if(res != -1)
+		if (res != -1)
 		{
 			free(*cmd_loc);
 			*cmd_loc = malloc(path_size);
 			strcpy(*cmd_loc, copy);
-			free(copy);	
+			free(copy);
 			*result_ = 1;
 			return;
 		}
@@ -77,12 +78,13 @@ char *_getpath()
 {
 	char *path   = _get_env("PATH");
 
-	if(!path) {
+	if (!path)
+	{
 		puts("PATH env was not found!.\n");
 		exit(1);
 	}
 
-	return path;
+	return (path);
 }
 
 char **get_tokenized_path()
@@ -90,31 +92,16 @@ char **get_tokenized_path()
 	char *path     = _getpath();
 	char **out;
 
-	if (!path) 
-		return NULL;
+	if (!path)
+		return (NULL);
 
 	out = split_by_delim(path, ":");
 	free(path);
-	return out;
+	return (out);
 }
 
-void init_path_manager()
+void init_path_manager(void)
 {
 	path_manager(INIT_PATH, NULL, NULL);
-}
-
-void  release_path()
-{
-	path_manager(CLEAR_PATH, NULL, NULL);
-}
-
-void  print_path()
-{
-	path_manager(PRINT_PATH, NULL, NULL);
-}
-
-void resolve_command_path(char **old_path, int *res)
-{
-	path_manager(FIND_CMD, old_path, res);
 }
 

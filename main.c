@@ -39,7 +39,7 @@ void shell(void)
 			}
 			if (read_ == 1)
 			{
-				
+
 				state_manager(INC);
 				continue;
 			}

@@ -6,20 +6,20 @@ int trim(char **s)
 	size_t it  = 0;
 	int    len = strlen(*s);
 	char   *buff = malloc(len + 1);
-	
+
 	if (tmp == NULL || buff == NULL)
-		return 0;
+		return (0);
 
 	if (!isspace(*tmp))
 	{
 		free(buff);
-		return len;
+		return (len);
 	}
 
-	while(isspace(*tmp))
+	while (isspace(*tmp))
 		tmp++;
 
-	while(*tmp) 
+	while (*tmp)
 		buff[it++] = *tmp++;
 
 	buff[it] = '\0';
@@ -27,7 +27,7 @@ int trim(char **s)
 	free(*s);
 
 	*s = buff;
-	return it;
+	return (it);
 }
 
 void terminate_incoming_str(char *s, int *size)
@@ -78,10 +78,10 @@ char **split_by_delim(const char *buffer, const char *delim)
 	tokens[it] =  NULL;
 	free(bcopy);
 
-	return tokens;
+	return (tokens);
 }
 
 char **parse_command(char *buff)
-{		
-	return split_by_delim(buff, " \t\n");
+{
+	return (split_by_delim(buff, " \t\n"));
 }

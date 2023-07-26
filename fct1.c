@@ -1,5 +1,6 @@
 #include "shell.h"
 volatile sig_atomic_t got_interrupted = 0;
+
 /**
  * handle_signal - fct
  * @signal: cmt
@@ -7,8 +8,8 @@ volatile sig_atomic_t got_interrupted = 0;
 void handle_signal(int signal)
 {
 	if (signal == SIGINT)
-	{
-        got_interrupted = 1;
+	    {
+		got_interrupted = 1;
 		}
 }
 /**
@@ -33,7 +34,7 @@ int _getline(char **buff, size_t *size, int fd)
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);
 
-	while(consume)
+	while (consume)
 	{
 		if (it == *size - 2)
 		{
@@ -42,12 +43,12 @@ int _getline(char **buff, size_t *size, int fd)
 			if (buff == NULL)
 			{
 				fprintf(stderr, "realloc failed to reallocate new buffer\n");
-				return -1;
+				return (-1);
 			}
 		}
 
-		if ((nread = read(fd, &c, 1)) <= 0) break;
-		switch(c)
+		if ((nread = read(fd, &c, 1)) <= 0)break;
+		switch (c)
 		{
 			case '\n': {
 				(*buff)[it] = 0;
@@ -57,7 +58,7 @@ int _getline(char **buff, size_t *size, int fd)
 			case '\r': {
 			} break;
 			case EOF: {
-				return -1;
+				return (-1);
 			} break;
 			case SEQ_START_BYTE: {
 				printf("started sequence..\n");
@@ -68,14 +69,14 @@ int _getline(char **buff, size_t *size, int fd)
 			} break;
 		}
 	}
-	
+
 	if (it == 0 && nread == 0)
-		return -1;
+		return (-1);
 
 	if (got_interrupted)
-		return INTRPT;
+		return (INTRPT);
 
-	return it;
+	return (it);
 }
 /**
  * _putchar - fct
@@ -105,10 +106,10 @@ void prompt_user(void)
 void print_2d(char **Array)
 {
 	int it = 0;
-	
+
 	if (Array == NULL)
 		return;
-	
+
 	while (Array[it])
 	{
 		printf("[%d] => |%s|\n", it, Array[it]);

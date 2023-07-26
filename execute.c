@@ -3,7 +3,8 @@
 int state_manager(state_action_t a)
 {
 	static int line_index;
-	switch(a)
+
+	switch (a)
 	{
 		case INIT: {
 			line_index = 0;
@@ -25,18 +26,16 @@ int _exec(char **argv, char *uinput)
 	map_t *m    = get_envp_map();
 	char  *shell;
 	int   res;
-	
-	resolve_command_path(&argv[0], &res);
 
-	if(res)
+	resolve_command_path(&argv[0], &res);
+	if (res)
 	{
 		pid = fork();
-		if(pid == 0)
+		if (pid == 0)
 		{
-			/* Child Process. */
 			code = execve(argv[0], argv, m->all);
 
-			if(code == -1) 
+			if (code == -1)
 			{
 				perror("[ERROR]");
 				free_2d(argv);
@@ -48,28 +47,24 @@ int _exec(char **argv, char *uinput)
 				free(uinput);
 				exit(1);
 			}
-
 			exit(code);
 		}
-
 		wait(&stat);
-		if(WIFEXITED(stat)) 
+		if (WIFEXITED(stat))
 		{
 			code = WEXITSTATUS(stat);
-			return code;
+			return (code);
 		}
-
-		return -2;
+		return (-2);
 	}
-
 	shell = _get_env("_");
-
-	printf("%s: %i: %s: not found\n", 
-		shell, 
-		state_manager(GET),
-		argv[0]
-	);
-
+	printf("%s: %i: %s: not found\n", shell, state_manager(GET), argv[0]);
 	free(shell);
-	return -1;
+	return (-1);
 }
+/**
+ *		shell,
+ * state_manager(GET),
+ * argv[0]
+ * );
+*/

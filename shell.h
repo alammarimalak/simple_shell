@@ -6,16 +6,18 @@
 #define INTRPT -20
 #define ENV_MAX 255
 
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <assert.h>
-#include <stdbool.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-#include <unistd.h>
+#include <signal.h> /* used for signal management */
+#include <stdio.h>  /* used for printing functions */
+#include <stdlib.h>  /* used for studio library */
+#include <string.h>  /* used for string tokens */
+#include <ctype.h>  
+#include <assert.h>  
+#include <stdbool.h>  /* used for studio bool */
+#include <sys/wait.h> /* calling the wait function */
+#include <fcntl.h>  /* for opening files */
+#include <unistd.h>   /* used for forking and execve */
+#include <sys/types.h> /* used for the type of child process PID */
+#include <sys/stat.h>  /* used for stating fucntions */
 
 typedef enum state_action_e
 {
@@ -24,6 +26,7 @@ typedef enum state_action_e
 	INC,
 	SET
 } state_action_t;
+
 /**
  * struct map_t - struct
  * @keys: key
@@ -32,6 +35,7 @@ typedef enum state_action_e
  * @size: size
  * @cap: cap
 */
+
 typedef struct map_t
 {
 	char **keys;
@@ -40,6 +44,7 @@ typedef struct map_t
 	int size;
 	int cap;
 } map_t;
+
 /**
  * enum env_action_t - enum
  * @PRINT_ENV: print env
@@ -51,6 +56,7 @@ typedef struct map_t
  * @DELETE_ENTRY: comment
  * @CLEAR_ENV: comment
 */
+
 typedef enum env_action_t
 {
 	PRINT_ENV,
@@ -62,6 +68,7 @@ typedef enum env_action_t
 	DELETE_ENTRY,
 	CLEAR_ENV
 } env_action_t;
+
 /**
  * enum path_action_t - enum
  * @PRINT_PATH: cmnt

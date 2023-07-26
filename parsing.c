@@ -1,4 +1,9 @@
 #include "shell.h"
+/*
+ * trim-function that trims a chain of characters
+ * s: pointer for the function
+ * Return: if success
+ */
 
 int trim(char **s)
 {
@@ -30,6 +35,11 @@ int trim(char **s)
 	return (it);
 }
 
+/*
+ * terminate_incoming_str - function
+ * s: pointer for the function
+ */
+
 void terminate_incoming_str(char *s, int *size)
 {
 	if (*size >= 2)
@@ -45,7 +55,12 @@ void terminate_incoming_str(char *s, int *size)
 		*size -= 1;
 	}
 }
-
+/*
+ * **split_by_delim - function that splits by delimiter
+ * *buffer: pointer
+ * *delim: delimiter pointer
+ * Return: return tokens
+ */
 char **split_by_delim(const char *buffer, const char *delim)
 {
 	int  cap = 12;

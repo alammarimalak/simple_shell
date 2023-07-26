@@ -110,9 +110,9 @@ void find_cmd(char **cmd_loc, char **paths, int *result_);
 void path_manager(path_action_t action, char **cmd_loc, int *res);
 void *env_manager(env_action_t action, const char *key, const char *value);
 
-void init_path_manager();
-void  release_path();
-void  print_path();
+void init_path_manager(void);
+void  release_path(void);
+void  print_path(void);
 void resolve_command_path(char **old_path, int *res);
 int state_manager(state_action_t a);
 int signal_manager(state_action_t a);

@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+* state_manager - state management for the shell
+* @a: an action to be done.
+* Return: (int) result
+*/
 int state_manager(state_action_t a)
 {
 	static int line_index;
@@ -15,12 +20,18 @@ int state_manager(state_action_t a)
 		case INC: {
 			line_index++;
 		} break;
-		case SET: {}break;
+		case SET: {
+		} break;
 	}
 
 	return (0);
 }
-
+/**
+* _exec - execute command
+* @uinput: user input buffer
+* @argv: args.
+* Return: (int) result
+*/
 int _exec(char **argv, char *uinput)
 {
 	int   pid, code, stat = 0;

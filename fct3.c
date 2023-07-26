@@ -25,7 +25,7 @@ void print_2d(char **Array)
 
 	while (Array[it])
 	{
-		printf("[%d] => |%s|\n", it, Array[it]);
+		printf("%s\n", Array[it]);
 		it++;
 	}
 }

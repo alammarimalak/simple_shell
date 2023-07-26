@@ -15,7 +15,7 @@ int state_manager(state_action_t a)
 		case INC: {
 			line_index++;
 		} break;
-		case SET: {} break;
+		case SET: {}break;
 	}
 
 	return (0);

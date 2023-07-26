@@ -1,5 +1,10 @@
 #include "shell.h"
-
+/*
+ * path_manager - function
+ * cmd_loc: character
+ * res: interger/pointer
+ * action: path_action_t
+ */
 void path_manager(path_action_t action, char **cmd_loc, int *res)
 {
 	static char **path_;
@@ -23,8 +28,9 @@ void path_manager(path_action_t action, char **cmd_loc, int *res)
 		break;
 	}
 }
+
 /**
- * find_cmd - fct
+ * find_cmd - function to find the command
  * @cmd_loc: cmt
  * @paths: cmt
  * @search_result: cmt
@@ -74,6 +80,7 @@ void find_cmd(char **cmd_loc, char **paths, int *result_)
 	*result_ = 0;
 }
 
+/* *_getpath - function */
 char *_getpath()
 {
 	char *path   = _get_env("PATH");
@@ -87,6 +94,7 @@ char *_getpath()
 	return (path);
 }
 
+/* **get_tokeniized_path() - function */
 char **get_tokenized_path()
 {
 	char *path     = _getpath();
@@ -100,6 +108,7 @@ char **get_tokenized_path()
 	return (out);
 }
 
+/* init_path_manager - function */
 void init_path_manager(void)
 {
 	path_manager(INIT_PATH, NULL, NULL);

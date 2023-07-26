@@ -10,15 +10,21 @@
 #include <stdio.h>  /* used for printing functions */
 #include <stdlib.h>  /* used for studio library */
 #include <string.h>  /* used for string tokens */
-#include <ctype.h>  
-#include <assert.h>  
+#include <ctype.h>
+#include <assert.h>
 #include <stdbool.h>  /* used for studio bool */
 #include <sys/wait.h> /* calling the wait function */
 #include <fcntl.h>  /* for opening files */
 #include <unistd.h>   /* used for forking and execve */
 #include <sys/types.h> /* used for the type of child process PID */
 #include <sys/stat.h>  /* used for stating fucntions */
-
+/**
+ * enum state_action_e - fct
+ * @INIT: cmt
+ * @GET: cmt
+ * @INC: cmt
+ * @SET: cmt
+*/
 typedef enum state_action_e
 {
 	INIT,

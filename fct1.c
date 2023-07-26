@@ -1,5 +1,4 @@
 #include "shell.h"
-
 int signal_manager(state_action_t a)
 {
 	static volatile sig_atomic_t got_interrupted;
@@ -53,7 +52,7 @@ int _getline(char **buff, size_t *size, int fd)
 	sigaction(SIGINT, &sa, NULL);
 	signal_manager(INIT);
 
-	while(consume)
+	while (consume)
 	{
 		if (it == *size - 2)
 		{
@@ -62,12 +61,12 @@ int _getline(char **buff, size_t *size, int fd)
 			if (buff == NULL)
 			{
 				fprintf(stderr, "realloc failed to reallocate new buffer\n");
-				return -1;
+				return (-1);
 			}
 		}
 
-		if ((nread = read(fd, &c, 1)) <= 0) break;
-		switch(c)
+		if ((nread = read(fd, &c, 1)) <= 0)break;
+		switch (c)
 		{
 			case '\n': {
 				(*buff)[it] = 0;
@@ -77,7 +76,7 @@ int _getline(char **buff, size_t *size, int fd)
 			case '\r': {
 			} break;
 			case EOF: {
-				return -1;
+				return (-1);
 			} break;
 			case SEQ_START_BYTE: {
 				printf("started sequence..\n");
@@ -88,14 +87,14 @@ int _getline(char **buff, size_t *size, int fd)
 			} break;
 		}
 	}
-	
+
 	if (it == 0 && nread == 0)
-		return -1;
+		return (-1);
 
 	if (signal_manager(GET))
 		return INTRPT;
 
-	return it;
+	return (it);
 }
 /**
  * _putchar - fct
@@ -125,10 +124,10 @@ void prompt_user(void)
 void print_2d(char **Array)
 {
 	int it = 0;
-	
+
 	if (Array == NULL)
 		return;
-	
+
 	while (Array[it])
 	{
 		printf("[%d] => |%s|\n", it, Array[it]);

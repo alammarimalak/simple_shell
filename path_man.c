@@ -81,8 +81,7 @@ void find_cmd(char **cmd_loc, char **paths, int *result_)
 }
 
 /**
- * *_getpath() - getpach function
- * @path: char
+ * _getpath - getpath function
  * Return: path
  */
 char *_getpath()
@@ -99,8 +98,8 @@ char *_getpath()
 }
 
 /**
- * **get_tokenized_path() - get tokenized path function
- * @path: char
+ * get_tokenized_path - get tokenized path function
+ * Return: NULL or out
  */
 char **get_tokenized_path()
 {

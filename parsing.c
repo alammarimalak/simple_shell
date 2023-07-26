@@ -1,11 +1,9 @@
 #include "shell.h"
-/*
- * trim - trim functio
- * function that has access to split a chain of characters
- * @s: char
+/**
+ * trim - fct
+ * @s: cmt
  * Return: it
  */
-
 int trim(char **s)
 {
 	char   *tmp  = *s;
@@ -36,13 +34,12 @@ int trim(char **s)
 	return (it);
 }
 
-/*
+/**
  * terminate_incoming_str - terminate incoming string function
- * any incoming string
  * @s: char
  * @size: int
+ * Return: void
  */
-
 void terminate_incoming_str(char *s, int *size)
 {
 	if (*size >= 2)
@@ -58,12 +55,12 @@ void terminate_incoming_str(char *s, int *size)
 		*size -= 1;
 	}
 }
-/*
- * **split_by_delim - split by delimiter function
- * @buffer: char
- * @delim: dchar
- * Return: tokens
- */
+/**
+ * split_by_delim - fct
+ * @buffer: cmt
+ * @delim: cmt
+ * Return: cmt
+*/
 char **split_by_delim(const char *buffer, const char *delim)
 {
 	int  cap = 12;
@@ -98,12 +95,11 @@ char **split_by_delim(const char *buffer, const char *delim)
 
 	return (tokens);
 }
-
-/*
- * **parse_command - parse command function
- * @buff: char
- * Return: buff
- */
+/**
+ * parse_command - cmt
+ * @buff: cmt
+ * Return: cmt
+*/
 char **parse_command(char *buff)
 {
 	return (split_by_delim(buff, " \t\n"));

@@ -68,7 +68,7 @@ typedef enum env_action_t
 	DELETE_ENTRY,
 	CLEAR_ENV
 } env_action_t;
-
+/* ALL FUNCTIONS LISTES HERE */
 /**
  * enum path_action_t - enum
  * @PRINT_PATH: cmnt

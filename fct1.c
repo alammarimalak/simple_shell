@@ -1,5 +1,10 @@
 #include "shell.h"
-volatile sig_atomic_t got_interrupted = 0;
+
+int signal_manager(state_action_t a)
+{
+	static volatile sig_atomic_t got_interrupted;
+
+}
 /**
  * handle_signal - fct
  * @signal: cmt
@@ -8,8 +13,8 @@ void handle_signal(int signal)
 {
 	if (signal == SIGINT)
 	{
-        got_interrupted = 1;
-		}
+        	got_interrupted = 1;
+	}
 }
 /**
  * _getline - fct

@@ -3,8 +3,24 @@
 int signal_manager(state_action_t a)
 {
 	static volatile sig_atomic_t got_interrupted;
+	switch(a)
+	{
+		case INIT: {
+			got_interrupted = 0;
+		} break;
+		case GET: {
+			return (got_interrupted);
+		} break;
+		case SET: {
+			got_interrupted = 1;
+		} break;
+		default:
+			break;
+	}
 
+	return (0);
 }
+
 /**
  * handle_signal - fct
  * @signal: cmt
@@ -12,9 +28,7 @@ int signal_manager(state_action_t a)
 void handle_signal(int signal)
 {
 	if (signal == SIGINT)
-	{
-        	got_interrupted = 1;
-	}
+        	signal_manager(SET);
 }
 /**
  * _getline - fct
@@ -30,13 +44,14 @@ int _getline(char **buff, size_t *size, int fd)
 	int    nread    = 0;
 	char c;
 	struct sigaction sa;
-
+	
 	*size = 16;
 	*buff = malloc(*size);
 	sa.sa_handler = handle_signal;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);
+	signal_manager(INIT);
 
 	while(consume)
 	{
@@ -77,7 +92,7 @@ int _getline(char **buff, size_t *size, int fd)
 	if (it == 0 && nread == 0)
 		return -1;
 
-	if (got_interrupted)
+	if (signal_manager(GET))
 		return INTRPT;
 
 	return it;

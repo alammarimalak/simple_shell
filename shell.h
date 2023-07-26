@@ -21,7 +21,8 @@ typedef enum state_action_e
 {
 	INIT,
 	GET,
-	INC
+	INC,
+	SET
 } state_action_t;
 /**
  * struct map_t - struct
@@ -114,5 +115,6 @@ void  release_path();
 void  print_path();
 void resolve_command_path(char **old_path, int *res);
 int state_manager(state_action_t a);
+int signal_manager(state_action_t a);
 
 #endif
